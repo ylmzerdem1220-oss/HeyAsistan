@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Zip'i aç
-        run: unzip -o proje.zip -d .
+        run: unzip -o projeai.zip -d .
       - uses: actions/setup-java@v4
         with: { distribution: 'temurin', java-version: '17' }
       - name: Gradle wrapper oluştur
