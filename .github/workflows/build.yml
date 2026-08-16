@@ -1,0 +1,22 @@
+name: APK Derle
+on:
+  push: { branches: ["main"] }
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Zip'i aç
+        run: unzip -o proje.zip -d .
+      - uses: actions/setup-java@v4
+        with: { distribution: 'temurin', java-version: '17' }
+      - name: Gradle wrapper oluştur
+        run: gradle wrapper --gradle-version 8.7
+      - run: chmod +x ./gradlew
+      - name: APK derle
+        run: ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HeyAsistan-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
